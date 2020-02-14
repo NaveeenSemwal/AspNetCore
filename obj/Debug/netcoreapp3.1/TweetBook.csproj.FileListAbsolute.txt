@@ -54,11 +54,15 @@ E:\DotnetCore\TweetBook\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\
 E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\TweetBook.csprojAssemblyReference.cache
 E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\staticwebassets\TweetBook.StaticWebAssets.Manifest.cache
 E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\staticwebassets\TweetBook.StaticWebAssets.xml
-E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\TweetBook.MvcApplicationPartsAssemblyInfo.cs
-E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\TweetBook.MvcApplicationPartsAssemblyInfo.cache
 E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\TweetBook.AssemblyInfoInputs.cache
 E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\TweetBook.AssemblyInfo.cs
 E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\TweetBook.RazorTargetAssemblyInfo.cache
 E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\TweetBook.csproj.CopyComplete
 E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\TweetBook.dll
 E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\TweetBook.pdb
+E:\DotnetCore\TweetBook\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+E:\DotnetCore\TweetBook\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+E:\DotnetCore\TweetBook\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\DotnetCore\TweetBook\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\TweetBook.MvcApplicationPartsAssemblyInfo.cs
+E:\DotnetCore\TweetBook\obj\Debug\netcoreapp3.1\TweetBook.MvcApplicationPartsAssemblyInfo.cache
