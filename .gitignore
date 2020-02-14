@@ -9,8 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-bin
-obj
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -36,6 +35,8 @@ bld/
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
+[Oo]bj/
+[Ll]og/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
