@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TweetBook.Options;
 using Microsoft.OpenApi.Models;
+using TweetBook.Installers;
+using System.Reflection;
 
 namespace TweetBook
 {
@@ -29,18 +31,15 @@ namespace TweetBook
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            List<IInstaller> installers = typeof(Startup).Assembly.ExportedTypes.
+                 Where(x => !x.IsAbstract && !x.IsInterface && typeof(IInstaller).IsAssignableFrom(x)).Select(Activator.CreateInstance).Cast<IInstaller>().ToList();
 
 
-            services.AddSwaggerGen(options => {
-
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Tweetbook API", Version = "v1" });
-            });
+            foreach (var installer in installers)
+            {
+                installer.InstallService(services, Configuration);
+            }
 
         }
 
@@ -68,16 +67,14 @@ namespace TweetBook
 
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint(swaggerOptions.UiEndpoint,swaggerOptions.Description);
+                options.SwaggerEndpoint(swaggerOptions.UiEndpoint, swaggerOptions.Description);
             });
-
 
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
 
 
             app.UseEndpoints(endpoints =>
