@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TweetBook.Data;
 using TweetBook.Domain;
 using TweetBook.Services.Abstract;
 
@@ -9,30 +11,40 @@ namespace TweetBook.Services.Implementation
 {
     public class PostService : IPostService
     {
-        private readonly List<Post> _posts;
-        public PostService()
-        {
-            _posts = new List<Post>();
+        private readonly ApplicationDbContext _dbContext;
 
-            for (int i = 0; i < 5; i++)
-            {
-                _posts.Add(new Post { Id = Guid.NewGuid().ToString(), Name = $"Post name {i}" });
-            }
+        public PostService(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
         }
 
-        public void AddPost(Post post)
+        /// <summary>
+        /// https://medium.com/bynder-tech/c-why-you-should-use-configureawait-false-in-your-library-code-d7837dce3d7f
+        /// https://johnthiriet.com/configure-await/
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
+        public async Task<bool> AddPost(Post post)
         {
-            _posts.Add(post);
+            _dbContext.Posts.Add(post);
+            int result = await _dbContext.SaveChangesAsync().ConfigureAwait(false);
+            return result > 0;
         }
 
-        public IList<Post> GetAllPost()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Post>> GetAllPost()
         {
-            return _posts;
+            List<Post> posts= await _dbContext.Posts.ToListAsync().ConfigureAwait(false);
+            return posts;
+
         }
 
-        public Post GetPostById(string postId)
+        public async Task<Post> GetPostById(string postId)
         {
-            return _posts.SingleOrDefault(x => x.Id == postId);
+            return await _dbContext.Posts.SingleOrDefaultAsync(x => x.Id == postId).ConfigureAwait(false);
         }
     }
 }

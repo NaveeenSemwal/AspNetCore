@@ -24,7 +24,7 @@ namespace TweetBook.Installers
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
-            services.AddSingleton<IPostService, PostService>();
+            services.AddScoped<IPostService, PostService>();
         }
     }
 }

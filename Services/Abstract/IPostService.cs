@@ -8,10 +8,10 @@ namespace TweetBook.Services.Abstract
 {
     public interface IPostService
     {
-        IList<Post> GetAllPost();
+        Task<List<Post>> GetAllPost();
 
-        Post GetPostById(string postId);
+        Task<Post> GetPostById(string postId);
 
-        void AddPost(Post post);
+        Task<bool> AddPost(Post post);
     }
 }

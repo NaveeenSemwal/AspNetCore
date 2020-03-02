@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TweetBook.Contracts.V1;
 using TweetBook.Contracts.V1.Request;
 using TweetBook.Contracts.V1.Response;
@@ -21,16 +22,18 @@ namespace TweetBook.Controllers.V1
             _postService = postService;
         }
 
+       
         [HttpGet(ApiRoutes.Posts.GetAll)]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(_postService.GetAllPost());
+            var posts = await _postService.GetAllPost().ConfigureAwait(false);
+            return Ok(posts);
         }
 
         [HttpGet(ApiRoutes.Posts.Get)]
-        public IActionResult Get([FromRoute]string postId)
+        public async Task<IActionResult> Get([FromRoute]string postId)
         {
-            var post = _postService.GetPostById(postId);
+            var post = await  _postService.GetPostById(postId).ConfigureAwait(false); ;
 
             if (post == null)
             {
@@ -52,7 +55,7 @@ namespace TweetBook.Controllers.V1
             if (!string.IsNullOrEmpty(request.Id))
                 request.Id = Guid.NewGuid().ToString();
 
-            var post = new Post { Id = request.Id };
+            var post = new Post { Id = request.Id,Name = request.Name };
 
             _postService.AddPost(post);
 
