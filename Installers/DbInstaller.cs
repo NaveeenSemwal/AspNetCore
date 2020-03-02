@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TweetBook.Data;
+using TweetBook.Services.Abstract;
+using TweetBook.Services.Implementation;
 
 namespace TweetBook.Installers
 {
@@ -20,6 +22,9 @@ namespace TweetBook.Installers
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+            services.AddSingleton<IPostService, PostService>();
         }
     }
 }

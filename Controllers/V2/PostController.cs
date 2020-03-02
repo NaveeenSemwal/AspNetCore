@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using TweetBook.Contracts.V2;
-using TweetBook.Domain.V2;
+using TweetBook.Domain;
 
 namespace TweetBook.Controllers.V2
 {
@@ -18,7 +18,7 @@ namespace TweetBook.Controllers.V2
 
             for (int i = 0; i < 5; i++)
             {
-                _posts.Add(new Post { Id = Guid.NewGuid().ToString(), Name = "Naveen" });
+                _posts.Add(new Post { Id = Guid.NewGuid().ToString()});
             }
         }
 

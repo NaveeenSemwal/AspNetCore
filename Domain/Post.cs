@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TweetBook.Domain.V2
+namespace TweetBook.Domain
 {
     public class Post
     {
