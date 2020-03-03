@@ -74,6 +74,9 @@ namespace TweetBook
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            // This must be used if you are using any kind of Authentication.
+            app.UseAuthentication();
+
             app.UseRouting();
 
 
