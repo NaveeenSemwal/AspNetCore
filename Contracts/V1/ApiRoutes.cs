@@ -15,5 +15,13 @@ namespace TweetBook.Contracts.V1
             public const string Get = "posts/{postId}";
             public const string Create = "post";
         }
+
+
+        public static class Identity
+        {
+            public const string Register = "Register";
+        }
+
+
     }
 }
