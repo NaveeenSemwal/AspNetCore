@@ -8,7 +8,7 @@ using TweetBook.Contracts.V1;
 using TweetBook.Contracts.V1.Request;
 using TweetBook.Services.Abstract;
 
-namespace TweetBook.Controllers
+namespace TweetBook.Controllers.V1
 {
     [Route(ApiRoutes.ControllerRoute)]
     [ApiController]
