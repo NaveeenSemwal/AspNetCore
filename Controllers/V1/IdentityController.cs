@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using TweetBook.Contracts.V1;
 using TweetBook.Contracts.V1.Request;
+using TweetBook.Contracts.V1.Response;
 using TweetBook.Services.Abstract;
 
 namespace TweetBook.Controllers.V1
@@ -23,9 +20,16 @@ namespace TweetBook.Controllers.V1
 
 
         [HttpPost(ApiRoutes.Identity.Register)]
-        public IActionResult Register([FromBody] UserRegisterationRequest request)
+        public async Task<IActionResult> Register([FromBody] UserRegisterationRequest request)
         {
-            return Ok();
+            var authResponse = await _identityService.RegisterAsync(request.Email, request.Password).ConfigureAwait(false);
+
+            if (!authResponse.Success)
+            {
+                return BadRequest(new AuthFailResponse { Errors = authResponse.Errors });
+            }
+
+            return Ok(new AuthSuccessResponse { Token = authResponse.Token });
         }
     }
 }

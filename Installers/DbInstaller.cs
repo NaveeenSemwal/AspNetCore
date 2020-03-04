@@ -2,10 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TweetBook.Data;
 using TweetBook.Services.Abstract;
 using TweetBook.Services.Implementation;
@@ -25,6 +21,7 @@ namespace TweetBook.Installers
 
 
             services.AddScoped<IPostService, PostService>();
+           
         }
     }
 }

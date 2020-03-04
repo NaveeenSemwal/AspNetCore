@@ -77,8 +77,12 @@ namespace TweetBook
             // This must be used if you are using any kind of Authentication.
             app.UseAuthentication();
 
+
+
             app.UseRouting();
 
+            // This will called in b/w of UseRouting and UseEndpoints middleware.
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

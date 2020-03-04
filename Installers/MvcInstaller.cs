@@ -6,6 +6,8 @@ using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
 using System.Text;
 using TweetBook.Options;
+using TweetBook.Services.Abstract;
+using TweetBook.Services.Implementation;
 
 namespace TweetBook.Installers
 {
@@ -17,7 +19,9 @@ namespace TweetBook.Installers
             // Added JWT Authentication start here.
             var jwtSettings = new JwtSettings();
             configuration.Bind(nameof(jwtSettings), jwtSettings);
+
             services.AddSingleton(jwtSettings);
+            services.AddScoped<IIdentityService, IdentityService>();
 
             services.AddAuthentication(configureOptions =>
             {
