@@ -1,19 +1,20 @@
-﻿FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
-
-ARG BUILDCONFIG=RELEASE
-
-
-COPY TweetBook.csproj/build/
-
-RUN dotnet restore ./build/TweetBook.csproj
-
-COPY ../build/
-WORKDIR /build/
-RUN dotnet publish ./TweetBook.csproj -c $BUILDCONFIG -o out 
-
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 -aspnetcore -runtime
+﻿FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-nanoserver-1903 AS base
 WORKDIR /app
+EXPOSE 80
+EXPOSE 443
 
-COPY --from = build /build/out
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1903 AS build
+WORKDIR /src
+COPY ["TweetBook.csproj", ""]
+RUN dotnet restore "./TweetBook.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "TweetBook.csproj" -c Release -o /app/build
 
-ENTRYPOINT["dotnet","TweetBook.dll"]
+FROM build AS publish
+RUN dotnet publish "TweetBook.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "TweetBook.dll"]
