@@ -36,16 +36,18 @@ namespace TweetBook.IntegrationTesting
         /// <returns></returns>
         private async Task<string> JwtTokenAsync()
         {
-            string url = ApiRoutes.ControllerRoute + "/" + ApiRoutes.Identity.Register;
+            //string url = ApiRoutes.ControllerRoute + "/" + ApiRoutes.Identity.Register;
 
-            var response = await TestClient.PostAsJsonAsync(url, new UserRegisterationRequest
-            {
-                Email = "champ1@gmail.com",
-                Password = "Dotvik@9876"
-            });
+            //var response = await TestClient.PostAsJsonAsync(url, new UserRegisterationRequest
+            //{
+            //    Email = "champ1@gmail.com",
+            //    Password = "Dotvik@9876"
+            //});
 
-            var registerationResponse = await response.Content.ReadAsAsync<AuthSuccessResponse>();
-            return registerationResponse.Token;
+            //var registerationResponse = await response.Content.ReadAsAsync<AuthSuccessResponse>();
+            //return registerationResponse.JwtToken;
+
+            return null;
         }
     }
 }

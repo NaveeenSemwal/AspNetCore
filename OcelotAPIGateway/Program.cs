@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace TweetBook
+namespace OcelotAPIGateway
 {
     public class Program
     {
@@ -21,6 +21,10 @@ namespace TweetBook
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+            .ConfigureAppConfiguration((host, config) =>
+            {
+                config.AddJsonFile("ocelot.json", false, false);
+            });
     }
 }
